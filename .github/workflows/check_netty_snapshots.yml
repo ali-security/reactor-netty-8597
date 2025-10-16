@@ -1,8 +1,6 @@
 name: Check Netty SNAPSHOTS
 
 on:
-  schedule:
-    - cron: "0 14 * * *"
 permissions: read-all
 jobs:
   build:
@@ -11,14 +9,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, macos-11, windows-2019]
+        os: [ubuntu-22.04, macos-13, windows-2022]
         transport: [native, nio]
         exclude:
           # excludes native on Windows (there's none)
-          - os: windows-2019
+          - os: windows-2022
             transport: native
           # macOS - https://github.com/netty/netty/issues/9689
-          - os: macos-11
+          - os: macos-13
             transport: native
 
     steps:
